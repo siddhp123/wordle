@@ -26,12 +26,13 @@ std::string capitalize_string(std::string word);
 // Capitalize word for printing
 char capitalize_char(char character);
 
-//NEES WORK
+// Runs each turn
 void turn(std::string guessWord, std::string finalWord, int tries);
 
-//NEES WORK
+// Checks if player has won 
 int win_condition(int tries);
 
+// Prints lines to separate
 void print_lines();
 
 const int wordLength{ 5 };
