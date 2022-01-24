@@ -30,7 +30,7 @@ char capitalize_char(char character);
 void turn(std::string guessWord, std::string finalWord, int tries);
 
 // Checks if player has won 
-int win_condition(int tries);
+int win_condition();
 
 // Prints lines to separate
 void print_lines();
@@ -42,7 +42,9 @@ std::vector<std::string> wordBank;
 int bankSize; 
 
 char greenLetters[wordLength]{ ' ', ' ', ' ', ' ', ' ' };
-char yellowLetters[wordLength]{ ' ', ' ', ' ', ' ', ' ' };
+//char yellowLetters[wordLength]{ ' ', ' ', ' ', ' ', ' ' };
+
+std::vector <char> yellowLetters;
 
 int main()
 {
@@ -54,20 +56,21 @@ int main()
     int maxTries{ 10 };
     int tries{ 0 };
 
-    //std::cout << capitalize_string(finalWord) << '\n';
+    std::cout << capitalize_string(finalWord) << '\n';
 
     while (tries < maxTries) {
         print_lines();
         guessWord = input_word(tries);
         turn(guessWord, finalWord, tries);
-        if (win_condition(tries) == 1) {
+        if (win_condition() == 1) {
+            std::cout << "You WON in " << tries + 1 << " tries!";
             break;
         }
         tries++;
     }
 
     if (tries == maxTries) {
-        std::cout << "YOU FAILED LOL \n" << "The word was: " << finalWord;
+        std::cout << "YOU LOST \n" << "The word was: " << finalWord;
     }
 }
 
@@ -131,15 +134,16 @@ char capitalize_char(char character) {
 void turn(std::string guessWord, std::string finalWord, int tries) {
 
     bool temp{ false };
+    bool isYellow{ false }; 
 
     for (int i{ 0 }; i < guessWord.length(); i++) {
         if (guessWord[i] == finalWord[i]) {
             greenLetters[i] = guessWord[i];
             std::cout << capitalize_char(guessWord[i]) << " is GREEN \n";
             
-            for (int y{ 0 }; y < wordLength; y++) {
-                if (yellowLetters[y] == greenLetters[i]) {
-                    yellowLetters[y] = ' ';
+            for (int j{ 0 }; j < yellowLetters.size(); j++) {
+                if (yellowLetters[j] == greenLetters[i]) {
+                    yellowLetters[j] = ' ';
                 }
             }
             
@@ -148,12 +152,21 @@ void turn(std::string guessWord, std::string finalWord, int tries) {
             temp = false;
             for (int x{ 0 }; x < finalWord.length(); x++) {
                 if (guessWord[i] == finalWord[x]) {
-                    for (int z{ 0 }; z < wordLength; z++) {
-                        if (guessWord[i] != greenLetters[z]) {
-                            yellowLetters[i] = guessWord[i];
-                            std::cout << capitalize_char(guessWord[i]) << " is YELLOW \n";
-                            temp = true;
-                            break;
+                    for (int y{ 0 }; y < wordLength; y++) {
+                        if (guessWord[i] != greenLetters[y]) {
+                            
+                            isYellow = false;
+                            for (int z{ 0 }; z < yellowLetters.size(); z++) {
+                                if (guessWord[i] == yellowLetters[z]) {
+                                    isYellow = true;
+                                }
+                            }
+                            if (isYellow == false) {
+                                yellowLetters.emplace_back(guessWord[i]);
+                                std::cout << capitalize_char(guessWord[i]) << " is YELLOW \n";
+                                temp = true;
+                                break;
+                            }
                         }
                     }
                 }
@@ -180,7 +193,7 @@ void turn(std::string guessWord, std::string finalWord, int tries) {
 
     // Prints yellow letters
     std::cout << "YELLOW LETTERS: ";
-    for (int i{ 0 }; i < wordLength; i++) {
+    for (int i{ 0 }; i < yellowLetters.size(); i++) {
         if (yellowLetters[i] != ' ') {
             std::cout << capitalize_char(yellowLetters[i]);
         }
@@ -189,18 +202,18 @@ void turn(std::string guessWord, std::string finalWord, int tries) {
     std::cout << "\n";
 }
 
-int win_condition(int tries) {
+int win_condition() {
     int count{ 0 };
     for (int i{ 0 }; i < wordLength; i++) {
         if (greenLetters[i] >= 97 && greenLetters[i] <= 122) { count++; }
     }
 
-    if (count == 5) {
-        std::cout << "You WON in " << tries + 1 << " tries!";
-        return(1);
-    }
-    else {
-        return(0);
+    switch (count) {
+        case 5:
+            return(1);
+
+        default:
+            return(0);
     }
 }
 
