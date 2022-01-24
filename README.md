@@ -2,6 +2,9 @@
 
 Recreation of the popular word game "wordle" in c++ as a console app. 
 
-1 known bug: duplicate letters in the yellowwords array
+no known bugs
+
+need to comment code. 
 
 will add GUI in the future. 
+will make scalable to any size of word later, given I find suitable word banks.
