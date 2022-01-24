@@ -56,7 +56,7 @@ int main()
     int maxTries{ 10 };
     int tries{ 0 };
 
-    std::cout << capitalize_string(finalWord) << '\n';
+    //std::cout << capitalize_string(finalWord) << '\n';
 
     while (tries < maxTries) {
         print_lines();
