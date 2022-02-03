@@ -1,5 +1,5 @@
 // Global constants for wordsize and tries
-// ALlows for game scalability to any word length given a sufficient wordbank
+// ALlows for future game scalability to any word length given a sufficient wordbank
 
 #ifndef CONSTANTS
 #define CONSTANTS

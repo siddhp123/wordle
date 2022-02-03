@@ -3,7 +3,7 @@
 #include <iostream>
 #include "colors.h"
 
-// Forward declarations for all print and capitalization functions
+// Forward declarations for all capitalization and print functions
 // Function definitions found in print.cpp 
 
 #ifndef PRINT

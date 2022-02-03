@@ -6,19 +6,19 @@
 
 void green(std::vector <char>& greenLetters, std::vector <char>& yellowLetters, std::string goalWord, char letter, int i)
 {
-	if (greenLetters[i] == letter) 
+	if (greenLetters[i] == letter) // Checks if index is already occupied
 	{
 		return;
 	}
 
-	std::erase(yellowLetters, letter);
+	std::erase(yellowLetters, letter); // Removes all of the same letter from yellow letters 
 
-	greenLetters[i] = letter; 
+	greenLetters[i] = letter; // Adds letter to greenletters
 }
 
 void yellow(std::vector <char>& greenLetters, std::vector <char>& yellowLetters, std::string goalWord, char letter, int i)
 {
-	for (auto k{ 0 }; k < greenLetters.size(); k++)
+	for (auto k{ 0 }; k < greenLetters.size(); k++) // Checks if letter is already in greenletters
 	{
 		if (greenLetters[k] == letter)
 		{
@@ -26,19 +26,20 @@ void yellow(std::vector <char>& greenLetters, std::vector <char>& yellowLetters,
 		}
 	}
 
-	std::erase(yellowLetters, letter);
+	std::erase(yellowLetters, letter); // Removes all of the same letter from yellow letters 
 
-	yellowLetters.emplace_back(letter);
+	yellowLetters.emplace_back(letter); // Appends letter to yellow letters
 }
 
 
 void grey(std::vector <char>& greyLetters, char letter)
 {
-	std::erase(greyLetters, letter);
+	std::erase(greyLetters, letter); // Removes all of the same letter from grey letters 
 
-	greyLetters.emplace_back(letter); 
+	greyLetters.emplace_back(letter); // Appends letter to grey letters
 }
 
+// Checks if green letters is occupied with letters instead of spaces
 int check_for_win(std::vector <char>& greenLetters)
 {
 	auto count{ 0 };
@@ -57,6 +58,7 @@ int check_for_win(std::vector <char>& greenLetters)
 	}
 }
 
+// Iterates through guessword to determine color of each letter 
 void turn
 	(std::string guessWord, std::string goalWord,
 	 std::vector <char>& greenLetters, 

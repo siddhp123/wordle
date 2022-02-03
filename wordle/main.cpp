@@ -19,18 +19,23 @@ void turn
 int check_for_win(std::vector <char>& greenLetters); 
 
 int main() {
+    // Tries at the start of the game
 	int tries = 0;
 
+    // Vectors for storing different color letters
     std::vector <char> greenLetters{ ' ', ' ', ' ', ' ', ' ' };
     std::vector <char> yellowLetters;
     std::vector <char> greyLetters;
 	
+    // Sorts wordbank and gets a goal word
 	std::vector <std::string> wordBank{ sort_words(wordBank) };
 	auto bankSize{ wordBank.size() };
 	std::string goalWord{ get_goal_word(wordBank, bankSize) };
 
-	std::cout << goalWord << "\n";
+    // Displays goal word at the start of the program (for debugging)
+    //std::cout << goalWord << "\n";
 
+    // Game loop
     while (tries < maxTries) 
     {
         print_lines();
@@ -41,6 +46,7 @@ int main() {
         
         print_arrays(greenLetters, yellowLetters, greyLetters);
 
+        // Runs win condition function
         switch (check_for_win(greenLetters))
         {
         case(0):

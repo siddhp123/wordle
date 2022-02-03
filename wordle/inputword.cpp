@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 
+// Converts string to all lowercase
 std::string lowercase_string(std::string word, const int wordLength) 
 {
     for (int i{ 0 }; i < wordLength; i++) 
@@ -14,6 +15,7 @@ std::string lowercase_string(std::string word, const int wordLength)
     return(word);
 }
 
+// Binary searches the sorted wordbank to check if inputted word is legal
 bool binarySearch(std::vector <std::string> wordBank, std::string word, int bankLength)
 {
     int start{ 0 }, end{ bankLength - 1 }, mid, res{ -1 };
@@ -30,6 +32,7 @@ bool binarySearch(std::vector <std::string> wordBank, std::string word, int bank
     return false;
 }
 
+// Gets inputted word and verifies it
 std::string input_word(int tries, int bankSize, const int wordLength, std::vector <std::string> wordBank) 
 {
     bool validWordEntered{ false };

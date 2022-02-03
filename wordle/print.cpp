@@ -27,6 +27,7 @@ void print_lines() {
     std::cout << '\n';
 }
 
+// Prints depending on color
 void print_letter(colors color, char letter)
 {
     switch (color)
@@ -45,6 +46,7 @@ void print_letter(colors color, char letter)
     }
 }
 
+// Prints arrays
 void print_arrays(std::vector <char>& greenLetters, std::vector <char>& yellowLetters, std::vector <char>& greyLetters)
 {
     std::cout << '\n';
@@ -76,11 +78,13 @@ void print_arrays(std::vector <char>& greenLetters, std::vector <char>& yellowLe
     std::cout << "\n \n";
 }
 
+// Print win statement
 void print_win(int tries)
 {
-    std::cout << "YOU WON IN " << tries + 1 << "TRIES!";
+    std::cout << "YOU WON IN " << tries + 1 << " TRIES!";
 }
 
+// Print lost statement
 void print_loss(std::string goalWord)
 {
     std::cout << "YOU LOST! \n" << "THE WORD WAS: " << capitalize_string(goalWord);
