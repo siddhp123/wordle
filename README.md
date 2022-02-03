@@ -9,6 +9,10 @@ will make scalable to any size of word later, given I find suitable word banks.
 
 FILES:
 
+sgb-words.txt - list of 5500+ 5-letter english words
+
+
+
 colors.h - enum class for colors
 
 constants.h - global constants
@@ -16,6 +20,8 @@ constants.h - global constants
 error.h - enum class for error codes
 
 print.h - forward declarations for print functions
+
+
 
 game.cpp - turn and win condition functions
 
